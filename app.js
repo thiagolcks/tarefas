@@ -34,6 +34,18 @@ app.get('/', function (req, res) {
     });
 });
 
+app.post('/tarefa/adicionar', function(req, res){
+	var tarefa = req.body.tarefa;
+
+	clienteRedis.rpush('tarefas', tarefa, function(err, reply){
+		if(err){
+			console.log(err);
+		}
+		console.log('Tarefa Adicionada ...');
+		res.redirect('/');
+	});
+});
+
 app.listen(3000);
 console.log('Servidor Inicializado na Porta 3000 ...',
     'URL: http://localhost:3000/');
