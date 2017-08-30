@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/giovanebarcelos/tarefas/issues"
   },
-  "homepage": "https://github.com/giovanebarcelos/tarefas#readme"
+  "homepage": "https://github.com/giovanebarcelos/tarefas#readme",
+  "dependencies": {
+  	"express":"*",
+  	"body-parser": "*",
+    "ejs": "^2.4.2",
+    "morgan":"*",
+    "redis":"*"
+  }
 }
