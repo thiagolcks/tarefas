@@ -46,6 +46,23 @@ app.post('/tarefa/adicionar', function(req, res){
 	});
 });
 
+app.post('/tarefa/remover', function(req, res){
+	var tarefasParaRemover = req.body.tarefas;
+
+	client.lrange('tarefas', 0, -1, function(err, tarefas){
+		for(var posicao = 0; posicao < tarefas.length; posicao++){
+			if(tarefasParaRemover.indexOf(tarefas[posicao]) > -1){
+				clienteRedis.lrem('tarefas',0,tarefas[posicao], function(){
+					if(err){
+						console.log(err);
+					}
+				});
+			}
+		}
+		res.redirect('/');
+	});
+});
+
 app.listen(3000);
 console.log('Servidor Inicializado na Porta 3000 ...',
     'URL: http://localhost:3000/');
