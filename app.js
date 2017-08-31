@@ -93,7 +93,9 @@ app.post('/contato/editar', function(req, res){
 	});
 });
 
-app.listen(3000);
-console.log('Servidor Inicializado na Porta 3000 ... \n URL: http://localhost:3000/');
+app.set('port', (process.env.PORT || 5000));
+app.listen(app.get('port'), function() {
+	console.log('Servidor Inicializado na Porta', app.get('port'));
+  });
 
 module.exports = app;

@@ -2,10 +2,7 @@
   "name": "tarefas",
   "version": "1.0.0",
   "description": "Gerenciador de tarefas",
-  "main": "app.js", 
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "main": "app.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/giovanebarcelos/tarefas.git"
@@ -24,6 +21,10 @@
     "redis":"*"
   },
   "engines": {
-    "node": "6.11.2"
+    "node": "6.11.1"
+  }, 
+  "scripts":{
+   "start": "node app.js",
+   "test": "node app.js"
   }
 }
