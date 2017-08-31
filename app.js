@@ -26,11 +26,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', function (req, res) {
     var titulo = 'Lista de Tarefas';
 
-    clienteRedis.lrange('tarefas', 0, -1, function (err, reply) {
-        res.render('tarefas', {
-            titulo: titulo,
-            tarefas: reply
-        });
+    clienteRedis.lrange('tarefas', 0, -1, function (err, tarefas) {
+		clienteRedis.hgetall('contato', function(err, contato){
+			res.render('tarefas', {
+				titulo: titulo,
+				tarefas: tarefas,
+				contato: contato
+			});
+		});
     });
 });
 
@@ -59,6 +62,26 @@ app.post('/tarefa/remover', function(req, res){
 				});
 			}
 		}
+		res.redirect('/');
+	});
+});
+
+app.post('/contato/editar', function(req, res){
+	var contato = {};
+
+	contato.name = req.body.nome;
+	contato.company = req.body.companhia;
+	contato.phone = req.body.telefone;
+
+	clienteRedis.hmset('contato', 
+	         ['nome', contato.nome,
+			  'companhia', contato.companhia, 
+			  'telefone', contato.telefone], 
+			  function(err, reply){
+		if(err){
+			console.log(err);
+		}
+		console.log(reply);
 		res.redirect('/');
 	});
 });
