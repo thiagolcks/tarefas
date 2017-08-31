@@ -69,9 +69,9 @@ app.post('/tarefa/remover', function(req, res){
 app.post('/contato/editar', function(req, res){
 	var contato = {};
 
-	contato.name = req.body.nome;
-	contato.company = req.body.companhia;
-	contato.phone = req.body.telefone;
+	contato.nome = req.body.nome;
+	contato.companhia = req.body.companhia;
+	contato.telefone = req.body.telefone;
 
 	clienteRedis.hmset('contato', 
 	         ['nome', contato.nome,
