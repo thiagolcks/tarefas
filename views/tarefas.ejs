@@ -62,11 +62,15 @@
 			</form>
 
 			<div class="well">
+			<% if ( contato == null ){ %>
+				<h3>Contato Não Registrado</h3>
+		    <% } else {%>
 				<h3>Contato</h3>
 				Nome:
 				<%= contato.nome %><br> Companhia:
 					<%= contato.companhia %><br> Telefone:
 						<%= contato.telefone %><br>
+			<%} %>
 			</div>
 
 			<div class="well">

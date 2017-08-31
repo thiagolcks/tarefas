@@ -7,7 +7,14 @@ var redis = require('redis');
 var app = express();
 
 // Cria Cliente Redis
-var clienteRedis = redis.createClient();
+// Porta e hostname são retirados de configuration -> endpoint do redislabs.com
+var clienteRedis = redis.createClient(13873, 
+	'redis-13873.c13.us-east-1-3.ec2.cloud.redislabs.com', 
+	{no_ready_check: true});
+
+clienteRedis.auth('password', function(err){
+	if (err) throw err;
+});
 
 clienteRedis.on('connect', function () {
     console.log('Servidor Redis Conectado ...');
@@ -87,7 +94,6 @@ app.post('/contato/editar', function(req, res){
 });
 
 app.listen(3000);
-console.log('Servidor Inicializado na Porta 3000 ...',
-    'URL: http://localhost:3000/');
+console.log('Servidor Inicializado na Porta 3000 ... \n URL: http://localhost:3000/');
 
 module.exports = app;
