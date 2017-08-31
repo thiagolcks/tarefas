@@ -31,3 +31,22 @@
 	</ul>
 	<input type="submit" value="Remover">
 </form>
+
+<h3>Contato</h3>
+Nome: <%= contato.nome %><br>
+Companhia: <%= contato.companhia %><br>
+Telefone: <%= contato.telefone %><br>
+
+<h3>Editar Contato</h3>
+<form method="post" action="/contato/editar">
+	<label>Nome</label><br>
+	<input type="text" name="nome" placeholder="Nome">
+	<br><br>
+	<label>Companhia</label><br>
+	<input type="text" name="companhia" placeholder="Companhia">
+	<br><br>
+	<label>Telefone</label><br>
+	<input type="text" name="telefone" placeholder="Telefone">
+	<br><br>
+	<input type="submit" value="Editar">
+</form>
